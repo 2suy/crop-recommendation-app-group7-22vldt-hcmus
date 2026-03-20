@@ -17,11 +17,11 @@ st.markdown("""
     <style>
     [data-testid="stForm"] {
         background-color: #FFFDD0;
-        padding: 15px 20px !important; /* Thu nhỏ padding trên dưới */
-        margin-bottom: -5px !important; /* Đẩy thành phần phía dưới lên gần hơn */
+        padding: 15px 20px !important;
+        margin-bottom: -5px !important;
     }
     [data-testid="stVerticalBlock"] {
-        gap: 0.8rem !important; /* Chỉnh khoảng cách mặc định giữa các widget của Streamlit */
+        gap: 0.8rem !important;
     }
     .stMarkdown {
         margin-bottom: -10px !important;
@@ -49,8 +49,8 @@ st.markdown("""
     [data-testid="stNotification"], .stAlert {
         background-color: red !important;
         border-radius: 10px !important;
-        min-height: unset !important; /* Cho phép khung thu nhỏ theo chữ */
-        padding: 5px 20px !important; /* Chỉnh độ gầy/béo của thanh đỏ ở đây */
+        min-height: unset !important;
+        padding: 5px 20px !important;
     }
 
     [data-testid="stNotificationContent"] div {
@@ -62,11 +62,10 @@ st.markdown("""
         color: white !important;
         font-weight: bold !important;
         font-size: 28px !important;
-        /* Quan trọng: Xóa sạch khoảng trống trên dưới của chữ */
         margin-top: -10px !important;
         margin-bottom: 10px !important;
         padding: 0px !important;
-        line-height: 1.0 !important; /* Thu hẹp dòng chữ */
+        line-height: 1.0 !important;
     }
 
     [data-testid="stNotification"] svg {
@@ -105,13 +104,12 @@ with st.form("my_form"):
     
     submit = st.form_submit_button("RESULTS")
 
-# Dự đoán
+#Dự đoán
 if submit:
     try:
         model = load_my_model()
         input_df = pd.DataFrame([[n, p, k, temp, hum, ph, rain]], 
                                 columns=['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall'])
-        
         prediction = model.predict(input_df)
         pred_en = str(prediction[0]).strip().lower()
 
@@ -144,9 +142,9 @@ if submit:
         df_top3 = df_filtered.sort_values(by='Probabilities (%)', ascending=False).head(3)
 
         if not df_top3.empty:
-            st.subheader("Most Suitable Crops:")
+            st.subheader("Most suitable crops:")
             
-            # Biểu đồ Plotly
+            #Plotly
             fig = px.bar(
                 df_top3, 
                 x='Crop', 
